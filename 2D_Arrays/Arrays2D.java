@@ -1,14 +1,8 @@
 /*
  * Topic: 2D Arrays (Data Structures & Algorithms)
  *
- * This file contains important 2D array problems commonly asked
- * in coding interviews and exams.
- *
- * Concepts Covered:
- * - Spiral Matrix Traversal
- * - Diagonal Sum (Brute Force)
- * - Diagonal Sum (Optimized Approach)
- * - Search in Sorted 2D Matrix (Staircase Search)
+ * This file contains frequently asked 2D array
+ * interview and exam questions with optimized solutions.
  *
  * Purpose:
  * - Daily DSA practice
@@ -22,8 +16,8 @@
 public class Arrays {
 
     // ------------------------------------------------------------
-    // Spiral Matrix Traversal
-    // Prints elements of matrix in spiral order
+    // Q1. Write a program to print elements of a 2D matrix
+    // in spiral order
     //
     // Time Complexity: O(n * m)
     // Space Complexity: O(1)
@@ -71,8 +65,8 @@ public class Arrays {
     }
 
     // ------------------------------------------------------------
-    // Diagonal Sum (Brute Force Approach)
-    // Calculates sum of primary and secondary diagonals
+    // Q2. Write a program to find the sum of primary and
+    // secondary diagonals of a square matrix (Brute Force)
     //
     // Time Complexity: O(n^2)
     // Space Complexity: O(1)
@@ -89,7 +83,7 @@ public class Arrays {
             }
         }
 
-        // Secondary diagonal (avoid double count for center element)
+        // Secondary diagonal (avoid double counting center element)
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[0].length; j++) {
                 if (i + j == matrix.length - 1 && i != j) {
@@ -101,8 +95,8 @@ public class Arrays {
     }
 
     // ------------------------------------------------------------
-    // Diagonal Sum (Optimized Approach)
-    // Uses single loop instead of nested loops
+    // Q3. Write a program to find the sum of primary and
+    // secondary diagonals of a square matrix (Optimized Approach)
     //
     // Time Complexity: O(n)
     // Space Complexity: O(1)
@@ -115,7 +109,7 @@ public class Arrays {
             // Primary diagonal
             sum += matrix[i][i];
 
-            // Secondary diagonal (avoid double count if same element)
+            // Secondary diagonal (avoid double count)
             if (i != n - 1 - i) {
                 sum += matrix[i][n - 1 - i];
             }
@@ -124,8 +118,11 @@ public class Arrays {
     }
 
     // ------------------------------------------------------------
-    // Search in Sorted 2D Matrix (Staircase Search)
-    // Matrix must be sorted row-wise and column-wise
+    // Q4. Write a program to search an element in a sorted
+    // 2D matrix using Staircase Search
+    //
+    // Condition:
+    // Matrix is sorted row-wise and column-wise
     //
     // Time Complexity: O(n + m)
     // Space Complexity: O(1)
