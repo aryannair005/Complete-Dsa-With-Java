@@ -1,18 +1,8 @@
 /*
  * Topic: Bit Manipulation (Data Structures & Algorithms)
  *
- * This file contains commonly used bit manipulation techniques
- * to perform operations efficiently using bitwise operators.
- *
- * Concepts Covered:
- * - Odd / Even check using bits
- * - Get, Set, Clear ith bit
- * - Update ith bit (2 approaches)
- * - Clear last i bits
- * - Clear range of bits
- * - Check power of 2
- * - Count set bits
- * - Fast exponentiation using bits
+ * This file contains frequently asked bit manipulation
+ * interview and exam questions implemented using bitwise operators.
  *
  * Purpose:
  * - Daily DSA practice
@@ -26,8 +16,11 @@
 public class BitManipulation {
 
     // ------------------------------------------------------------
-    // Check if a Number is Odd or Even
-    // Uses LSB (Least Significant Bit)
+    // Q1. Write a program to check whether a number is odd or even
+    // using bitwise operators
+    //
+    // Concept:
+    // Check Least Significant Bit (LSB)
     //
     // Time Complexity: O(1)
     // Space Complexity: O(1)
@@ -43,8 +36,10 @@ public class BitManipulation {
     }
 
     // ------------------------------------------------------------
-    // Get ith Bit
-    // Returns 0 or 1 based on ith bit
+    // Q2. Write a program to get the ith bit of a number
+    //
+    // Returns:
+    // 0 or 1
     //
     // Time Complexity: O(1)
     // Space Complexity: O(1)
@@ -59,8 +54,7 @@ public class BitManipulation {
     }
 
     // ------------------------------------------------------------
-    // Set ith Bit
-    // Sets ith bit to 1
+    // Q3. Write a program to set the ith bit of a number
     //
     // Time Complexity: O(1)
     // Space Complexity: O(1)
@@ -71,8 +65,7 @@ public class BitManipulation {
     }
 
     // ------------------------------------------------------------
-    // Clear ith Bit
-    // Sets ith bit to 0
+    // Q4. Write a program to clear the ith bit of a number
     //
     // Time Complexity: O(1)
     // Space Complexity: O(1)
@@ -83,7 +76,9 @@ public class BitManipulation {
     }
 
     // ------------------------------------------------------------
-    // Update ith Bit (1st Approach)
+    // Q5. Write a program to update the ith bit of a number
+    // (Using conditional approach)
+    //
     // If newBit = 1 → set bit
     // If newBit = 0 → clear bit
     //
@@ -98,8 +93,8 @@ public class BitManipulation {
     }
 
     // ------------------------------------------------------------
-    // Update ith Bit (2nd Approach)
-    // Clear ith bit first, then OR with new bit
+    // Q6. Write a program to update the ith bit of a number
+    // (Using clear + OR approach)
     //
     // Time Complexity: O(1)
     // Space Complexity: O(1)
@@ -112,7 +107,8 @@ public class BitManipulation {
     }
 
     // ------------------------------------------------------------
-    // Clear Last i Bits
+    // Q7. Write a program to clear the last i bits of a number
+    //
     // Example:
     // number = 15 (1111), i = 2 → result = 12 (1100)
     //
@@ -125,7 +121,7 @@ public class BitManipulation {
     }
 
     // ------------------------------------------------------------
-    // Clear Range of Bits from i to j
+    // Q8. Write a program to clear a range of bits from i to j
     //
     // Time Complexity: O(1)
     // Space Complexity: O(1)
@@ -139,8 +135,10 @@ public class BitManipulation {
     }
 
     // ------------------------------------------------------------
-    // Check if Number is Power of 2
-    // Property: n & (n - 1) == 0
+    // Q9. Write a program to check whether a number is a power of 2
+    //
+    // Property:
+    // n & (n - 1) == 0
     //
     // Time Complexity: O(1)
     // Space Complexity: O(1)
@@ -150,7 +148,8 @@ public class BitManipulation {
     }
 
     // ------------------------------------------------------------
-    // Count Number of Set Bits (1s)
+    // Q10. Write a program to count the number of set bits (1s)
+    // in a given number
     //
     // Time Complexity: O(log n)
     // Space Complexity: O(1)
@@ -168,8 +167,8 @@ public class BitManipulation {
     }
 
     // ------------------------------------------------------------
-    // Fast Exponentiation (Binary Exponentiation)
-    // Calculates a^n efficiently
+    // Q11. Write a program to calculate a^n using fast exponentiation
+    // (Binary Exponentiation)
     //
     // Time Complexity: O(log n)
     // Space Complexity: O(1)
