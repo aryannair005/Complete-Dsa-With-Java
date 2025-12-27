@@ -1,14 +1,8 @@
 /*
  * Topic: Strings (Data Structures & Algorithms)
  *
- * This file contains commonly asked string-based problems
- * with efficient solutions.
- *
- * Concepts Covered:
- * - Palindrome Check
- * - Shortest Path Distance (Direction String)
- * - String Compression
- * - Anagram Check
+ * This file contains frequently asked string-related
+ * interview and exam questions with efficient solutions.
  *
  * Purpose:
  * - Daily DSA practice
@@ -22,8 +16,8 @@
 public class Strings {
 
     // ------------------------------------------------------------
-    // Check if a String is Palindrome
-    // Uses two-pointer approach
+    // Q1. Write a program to check whether a given string is a palindrome
+    // using the two-pointer approach
     //
     // Example:
     // "madam" -> true
@@ -47,11 +41,11 @@ public class Strings {
     }
 
     // ------------------------------------------------------------
-    // Shortest Distance from Origin
-    // Given a string containing directions:
-    // N = North, S = South, E = East, W = West
+    // Q2. Write a program to find the shortest distance from the origin
+    // given a string of directions (N, S, E, W)
     //
-    // Calculates shortest distance from (0,0)
+    // Assumption:
+    // Start position is (0,0)
     //
     // Time Complexity: O(n)
     // Space Complexity: O(1)
@@ -79,8 +73,8 @@ public class Strings {
     }
 
     // ------------------------------------------------------------
-    // String Compression
-    // Compresses repeated characters
+    // Q3. Write a program to perform string compression
+    // by counting consecutive repeated characters
     //
     // Example:
     // "aaabbc" -> "a3b2c"
@@ -111,7 +105,7 @@ public class Strings {
             }
         }
 
-        // handle last character
+        // Handle last character
         sb.append(ch);
         if (count > 1) {
             sb.append(count);
@@ -121,14 +115,15 @@ public class Strings {
     }
 
     // ------------------------------------------------------------
-    // Check if Two Strings are Anagrams
-    // Uses frequency count of characters
+    // Q4. Write a program to check whether two strings are anagrams
+    // using character frequency counting
     //
     // Example:
     // "anagram" & "nagaram" -> true
     // "rat" & "car" -> false
     //
-    // Assumption: lowercase English letters only
+    // Assumption:
+    // Strings contain only lowercase English letters
     //
     // Time Complexity: O(n)
     // Space Complexity: O(1)
