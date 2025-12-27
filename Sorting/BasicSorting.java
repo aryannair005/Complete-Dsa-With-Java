@@ -1,14 +1,8 @@
 /*
  * Topic: Basic Sorting Algorithms (Data Structures & Algorithms)
  *
- * This file contains implementation of basic comparison and
- * non-comparison based sorting algorithms.
- *
- * Sorting Algorithms Covered:
- * - Bubble Sort
- * - Selection Sort
- * - Insertion Sort
- * - Counting Sort
+ * This file contains frequently asked sorting algorithm
+ * questions with clean Java implementations.
  *
  * Purpose:
  * - Daily DSA practice
@@ -22,7 +16,7 @@
 public class BasicSorting {
 
     // ------------------------------------------------------------
-    // Utility Method to Print Array
+    // Utility Method: Write a program to print elements of an array
     // ------------------------------------------------------------
     public static void printArr(int[] arr) {
         for (int i = 0; i < arr.length; i++) {
@@ -32,12 +26,15 @@ public class BasicSorting {
     }
 
     // ------------------------------------------------------------
-    // Bubble Sort
-    // Repeatedly swaps adjacent elements if they are in wrong order
+    // Q1. Write a program to sort an array using Bubble Sort
+    //
+    // Description:
+    // Repeatedly compares adjacent elements and swaps them
+    // if they are in the wrong order.
     //
     // Time Complexity:
-    //   Best Case: O(n)
-    //   Average/Worst Case: O(n^2)
+    // Best Case: O(n)
+    // Average/Worst Case: O(n^2)
     //
     // Space Complexity: O(1)
     // ------------------------------------------------------------
@@ -58,11 +55,14 @@ public class BasicSorting {
     }
 
     // ------------------------------------------------------------
-    // Selection Sort
-    // Finds the minimum element and places it at correct position
+    // Q2. Write a program to sort an array using Selection Sort
+    //
+    // Description:
+    // Selects the minimum element from the unsorted part
+    // and places it at the beginning.
     //
     // Time Complexity:
-    //   Best/Average/Worst Case: O(n^2)
+    // Best/Average/Worst Case: O(n^2)
     //
     // Space Complexity: O(1)
     // ------------------------------------------------------------
@@ -87,12 +87,15 @@ public class BasicSorting {
     }
 
     // ------------------------------------------------------------
-    // Insertion Sort
-    // Builds sorted array one element at a time
+    // Q3. Write a program to sort an array using Insertion Sort
+    //
+    // Description:
+    // Inserts each element into its correct position
+    // in the already sorted part of the array.
     //
     // Time Complexity:
-    //   Best Case: O(n)
-    //   Average/Worst Case: O(n^2)
+    // Best Case: O(n)
+    // Average/Worst Case: O(n^2)
     //
     // Space Complexity: O(1)
     // ------------------------------------------------------------
@@ -114,16 +117,20 @@ public class BasicSorting {
     }
 
     // ------------------------------------------------------------
-    // Counting Sort (Non-comparison based sorting)
-    // Works best when range of input values is small
+    // Q4. Write a program to sort an array using Counting Sort
+    //
+    // Description:
+    // A non-comparison based sorting algorithm that counts
+    // the frequency of elements and rebuilds the array.
     //
     // Time Complexity: O(n + k)
-    //   n = number of elements
-    //   k = range of elements (max value)
+    // n = number of elements
+    // k = range of elements
     //
     // Space Complexity: O(k)
     //
-    // NOTE: Does NOT work for negative numbers directly
+    // Limitation:
+    // Does not work directly with negative numbers
     // ------------------------------------------------------------
     public static void countingSort(int[] arr) {
         int max = Integer.MIN_VALUE;
@@ -160,7 +167,6 @@ public class BasicSorting {
         int[] arr = {5, 4, 1, 3, 2};
 
         countingSort(arr);
-        // Try others:
         // bubbleSort(arr);
         // selectionSort(arr);
         // insertionSort(arr);
