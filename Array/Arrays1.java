@@ -1,21 +1,8 @@
 /*
  * Topic: Arrays (Data Structures & Algorithms)
  *
- * This file contains commonly asked array problems solved using
- * brute-force and optimized approaches.
- *
- * Concepts Covered:
- * - Linear Search
- * - Binary Search (Sorted Array)
- * - Reverse Array (Two-pointer approach)
- * - Pair generation
- * - Subarray generation
- * - Maximum Subarray Sum:
- *      1) Brute Force
- *      2) Prefix Sum
- *      3) Kadane’s Algorithm
- * - Trapping Rain Water Problem
- * - Buy and Sell Stock (Maximum Profit)
+ * This file contains frequently asked array-related
+ * interview and exam questions with optimized solutions.
  *
  * Purpose:
  * - Daily DSA practice
@@ -29,24 +16,23 @@
 public class Arrays {
 
     // ------------------------------------------------------------
-    // Linear Search
-    // Searches target element by traversing array sequentially
+    // Q1. Write a program to perform Linear Search on an array
+    //
     // Time Complexity: O(n)
     // Space Complexity: O(1)
     // ------------------------------------------------------------
     public static int linearSearch(int[] arr, int target) {
         for (int i = 0; i < arr.length; i++) {
             if (arr[i] == target) {
-                return i; // target found
+                return i;
             }
         }
-        return -1; // target not found
+        return -1;
     }
 
     // ------------------------------------------------------------
-    // Binary Search
-    // Works only on sorted arrays
-    // Uses divide and conquer technique
+    // Q2. Write a program to perform Binary Search on a sorted array
+    //
     // Time Complexity: O(log n)
     // Space Complexity: O(1)
     // ------------------------------------------------------------
@@ -69,8 +55,8 @@ public class Arrays {
     }
 
     // ------------------------------------------------------------
-    // Reverse an Array
-    // Uses two-pointer approach (start & end)
+    // Q3. Write a program to reverse an array using two-pointer approach
+    //
     // Time Complexity: O(n)
     // Space Complexity: O(1)
     // ------------------------------------------------------------
@@ -86,15 +72,17 @@ public class Arrays {
             end--;
         }
 
-        // Print reversed array
         for (int i = 0; i < arr.length; i++) {
             System.out.print(arr[i] + " ");
         }
     }
 
     // ------------------------------------------------------------
-    // Print All Pairs in an Array
-    // Example: [1,2,3] → (1,2) (1,3) (2,3)
+    // Q4. Write a program to print all possible pairs in an array
+    //
+    // Example:
+    // [1, 2, 3] → (1,2) (1,3) (2,3)
+    //
     // Time Complexity: O(n^2)
     // ------------------------------------------------------------
     public static void pairs(int[] arr) {
@@ -107,8 +95,10 @@ public class Arrays {
     }
 
     // ------------------------------------------------------------
-    // Print All Subarrays
-    // Total subarrays = n * (n + 1) / 2
+    // Q5. Write a program to print all subarrays of an array
+    //
+    // Total Subarrays = n * (n + 1) / 2
+    //
     // Time Complexity: O(n^3)
     // ------------------------------------------------------------
     public static void subarrays(int[] arr) {
@@ -130,8 +120,8 @@ public class Arrays {
     }
 
     // ------------------------------------------------------------
-    // Maximum Subarray Sum (Brute Force)
-    // Checks sum of every possible subarray
+    // Q6. Write a program to find maximum subarray sum using brute force
+    //
     // Time Complexity: O(n^3)
     // Space Complexity: O(1)
     // ------------------------------------------------------------
@@ -139,11 +129,9 @@ public class Arrays {
         int maxSum = Integer.MIN_VALUE;
 
         for (int i = 0; i < arr.length; i++) {
-            int start = i;
             for (int j = i; j < arr.length; j++) {
-                int end = j;
                 int currSum = 0;
-                for (int k = start; k <= end; k++) {
+                for (int k = i; k <= j; k++) {
                     currSum += arr[k];
                 }
                 maxSum = Math.max(currSum, maxSum);
@@ -153,8 +141,9 @@ public class Arrays {
     }
 
     // ------------------------------------------------------------
-    // Maximum Subarray Sum (Prefix Sum Approach)
-    // Optimizes brute force by precomputing sums
+    // Q7. Write a program to find maximum subarray sum
+    // using Prefix Sum technique
+    //
     // Time Complexity: O(n^2)
     // Space Complexity: O(n)
     // ------------------------------------------------------------
@@ -168,16 +157,10 @@ public class Arrays {
         }
 
         for (int i = 0; i < arr.length; i++) {
-            int start = i;
             for (int j = i; j < arr.length; j++) {
-                int end = j;
-                int currSum;
-
-                if (start == 0) {
-                    currSum = prefix[end];
-                } else {
-                    currSum = prefix[end] - prefix[start - 1];
-                }
+                int currSum = (i == 0)
+                        ? prefix[j]
+                        : prefix[j] - prefix[i - 1];
                 maxSum = Math.max(currSum, maxSum);
             }
         }
@@ -185,8 +168,9 @@ public class Arrays {
     }
 
     // ------------------------------------------------------------
-    // Maximum Subarray Sum (Kadane’s Algorithm)
-    // Resets current sum if it becomes negative
+    // Q8. Write a program to find maximum subarray sum
+    // using Kadane’s Algorithm
+    //
     // Time Complexity: O(n)
     // Space Complexity: O(1)
     // ------------------------------------------------------------
@@ -197,6 +181,7 @@ public class Arrays {
         for (int i = 0; i < arr.length; i++) {
             currSum += arr[i];
             maxSum = Math.max(currSum, maxSum);
+
             if (currSum < 0) {
                 currSum = 0;
             }
@@ -205,9 +190,8 @@ public class Arrays {
     }
 
     // ------------------------------------------------------------
-    // Trapping Rain Water Problem
-    // Uses left max and right max arrays
-    // Water trapped = min(leftMax, rightMax) - height[i]
+    // Q9. Write a program to solve the Trapping Rain Water problem
+    //
     // Time Complexity: O(n)
     // Space Complexity: O(n)
     // ------------------------------------------------------------
@@ -237,8 +221,9 @@ public class Arrays {
     }
 
     // ------------------------------------------------------------
-    // Buy and Sell Stock (Maximum Profit)
-    // Buy at lowest price and sell at highest future price
+    // Q10. Write a program to find the maximum profit
+    // in Buy and Sell Stock problem
+    //
     // Time Complexity: O(n)
     // Space Complexity: O(1)
     // ------------------------------------------------------------
