@@ -13,6 +13,8 @@
  * Author: Aryan Nair
  */
 
+import java.util.*;
+
 public class Recursion {
 
     // ------------------------------------------------------------
@@ -79,6 +81,7 @@ public class Recursion {
     // n = 6 -> 8
     //
     // Time Complexity: O(2^n)
+    // Space Complexity: O(n)
     // ------------------------------------------------------------
     public static int nthFibonacci(int n) {
         if (n == 0 || n == 1) {
@@ -104,7 +107,7 @@ public class Recursion {
     }
 
     // ------------------------------------------------------------
-    // Q7. Write a recursive program to find the first occurrence of an element in an array
+    // Q7. Write a recursive program to find the first occurrence of an element
     //
     // Example:
     // arr = [1, 2, 3, 2], key = 2 -> index 1
@@ -120,7 +123,7 @@ public class Recursion {
     }
 
     // ------------------------------------------------------------
-    // Q8. Write a recursive program to find the last occurrence of an element in an array
+    // Q8. Write a recursive program to find the last occurrence of an element
     //
     // Example:
     // arr = [1, 2, 3, 2], key = 2 -> index 3
@@ -142,12 +145,14 @@ public class Recursion {
     }
 
     // ------------------------------------------------------------
-    // Q9. Write a recursive program to calculate power (x^n) using divide and conquer
+    // Q9. Write a recursive program to calculate power (x^n)
+    // using divide and conquer
     //
     // Example:
     // x = 2, n = 10 -> 1024
     //
     // Time Complexity: O(log n)
+    // Space Complexity: O(log n)
     // ------------------------------------------------------------
     public static int power(int x, int n) {
         if (n == 0) {
@@ -195,7 +200,7 @@ public class Recursion {
     }
 
     // ------------------------------------------------------------
-    // Q12. Write a recursive program to remove duplicate characters from a string
+    // Q12. Write a recursive program to remove duplicate characters
     //
     // Example:
     // "appnaacollege" -> "apnacoleg"
@@ -258,10 +263,45 @@ public class Recursion {
     }
 
     // ------------------------------------------------------------
+    // Q15. Write a recursive program to generate all subsets
+    // of a given array
+    //
+    // Example:
+    // nums = [1,2,3]
+    // Output = [[], [1], [2], [1,2], [3], [1,3], [2,3], [1,2,3]]
+    //
+    // Time Complexity: O(2^n)
+    // Space Complexity: O(n)
+    // ------------------------------------------------------------
+    public static List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        helper(nums, result, 0, new ArrayList<>());
+        return result;
+    }
+
+    private static void helper(int[] nums, List<List<Integer>> result,
+                               int idx, List<Integer> current) {
+        if (idx == nums.length) {
+            result.add(new ArrayList<>(current));
+            return;
+        }
+
+        // Exclude current element
+        helper(nums, result, idx + 1, current);
+
+        // Include current element
+        current.add(nums[idx]);
+        helper(nums, result, idx + 1, current);
+
+        // Backtrack
+        current.remove(current.size() - 1);
+    }
+
+    // ------------------------------------------------------------
     // Main Method (Test Code)
     // ------------------------------------------------------------
     public static void main(String[] args) {
-        System.out.println("Tower of Hanoi moves for 3 disks: "
-                + towerOfHanoi(3, 1, 2, 3));
+        int[] nums = {1, 2, 3};
+        System.out.println(subsets(nums));
     }
 }
