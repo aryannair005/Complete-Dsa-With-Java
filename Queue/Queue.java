@@ -464,6 +464,178 @@ public class QueueBasics {
             return deque.getFirst();
         }
     }
+    // ============================================================
+    // Q12. Minimum Cost to Connect Ropes
+    //
+    // About:
+    // Given an array where each element represents the length of a rope,
+    // the task is to connect all ropes into one rope with minimum total cost.
+    // The cost of connecting two ropes is equal to the sum of their lengths.
+    //
+    // Approach:
+    // - Use a Min Heap (PriorityQueue)
+    // - Always pick the two smallest ropes
+    // - Add their sum to the total cost
+    // - Insert the combined rope back into the heap
+    //
+    // This is a greedy algorithm.
+    //
+    // Time Complexity: O(n log n)
+    //   - n insertions into heap → O(n log n)
+    //   - n removals and insertions → O(n log n)
+    //
+    // Space Complexity: O(n)
+    //   - PriorityQueue stores all elements
+    // ============================================================
+    public static int minimumCost(int[] arr){
+        int minCost=0;
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
+        for(int i=0;i<arr.length;i++){
+            pq.add(arr[i]);
+        }
+
+        while(pq.size()>1){
+            int element1=pq.remove();
+            int element2=pq.remove();
+            int sum=element1+element2;
+            minCost+=sum;
+            pq.add(sum);
+        }
+        return minCost;
+    }
+        // ============================================================
+    // Q13. Reverse First K Elements of a Queue (Using Stack)
+    //
+    // About:
+    // Given a queue and an integer k, reverse the first k elements
+    // of the queue while keeping the remaining elements in the same order.
+    //
+    // Approach:
+    // 1. Remove first k elements from the queue and push them into a stack
+    // 2. Pop all elements from the stack and add them back to the queue
+    // 3. Move the remaining (n - k) elements from front to back
+    //
+    // Time Complexity: O(n)
+    // Space Complexity: O(k)
+    // ============================================================
+    public static Queue<Integer> reverseFirstKElements(Queue<Integer> q,int k){
+        Stack<Integer> st=new Stack<>();
+
+        for(int i=0;i<k;i++){
+            st.push(q.remove());
+        }
+        while(st.isEmpty() != true){
+            q.add(st.pop());
+        }
+        for(int i=0;i<q.size()-k;i++){
+            q.add(q.remove());
+        }
+        return q;
+
+    }
+
+    // ============================================================
+    // Q14. Reverse First K Elements of a Queue (Using Deque)
+    //
+    // About:
+    // Same problem as above, but solved using a Deque instead of a Stack.
+    //
+    // Approach:
+    // 1. Remove first k elements from queue and store them in deque
+    // 2. Remove elements from the back of deque and add them to queue
+    // 3. Rotate the remaining (n - k) elements to maintain order
+    //
+    // Time Complexity: O(n)
+    // Space Complexity: O(k)
+    // ============================================================
+    public static Queue<Integer> reverseFirstKElements(Queue<Integer> q,int k){
+        Deque<Integer> dq=new ArrayDeque<>();
+
+        for(int i=0;i<k;i++){
+            dq.addLast(q.remove());
+        }
+        for(int i=0;i<k;i++){
+            q.add(dq.removeLast());
+        }
+        for(int i=0;i<q.size()-k;i++){
+            q.add(q.remove());
+        }
+        return q;
+
+    }
+
+    // ============================================================
+    // Q15. Kth Smallest Element in an Array
+    //
+    // About:
+    // Given an array of integers and an integer k,
+    // find the k-th smallest element in the array.
+    //
+    // Approach:
+    // - Use a Min Heap (PriorityQueue)
+    // - Insert all elements of the array into the heap
+    // - Remove the smallest element (k-1) times
+    // - The next removed element is the k-th smallest
+    //
+    // Time Complexity: O(n log n)
+    //   - Inserting n elements into heap → O(n log n)
+    //   - Removing k elements → O(k log n)
+    //
+    // Space Complexity: O(n)
+    //   - PriorityQueue stores all elements
+    // ============================================================
+    class Solution {
+        public int kthSmallest(int[] arr, int k) {
+            // Code here
+            PriorityQueue<Integer> pq=new PriorityQueue<>();
+            
+            for(int i=0;i<arr.length;i++){
+                pq.add(arr[i]);
+            }
+            for(int i=0;i<k-1;i++){
+                pq.remove();
+            }
+            
+            return pq.remove();
+        }
+        
+    }
+    // ============================================================
+    // Question: Kth Largest Element in an Array
+    //
+    // About:
+    // Given an integer array and an integer k,
+    // return the k-th largest element in the array.
+    //
+    // Approach:
+    // - Use a Min Heap (PriorityQueue) of size k
+    // - Insert elements one by one into the heap
+    // - If heap size exceeds k, remove the smallest element
+    // - At the end, the top of the heap is the k-th largest element
+    //
+    // Time Complexity: O(n log k)
+    //   - n insertions into heap
+    //   - Heap size is maintained at k
+    //
+    // Space Complexity: O(k)
+    //   - PriorityQueue stores at most k elements
+    // ============================================================
+    class Solution {
+        public int findKthLargest(int[] nums, int k) {
+            PriorityQueue<Integer> pq=new PriorityQueue<>();
+
+            for(int i=0;i<nums.length;i++){
+                pq.add(nums[i]);
+                if(pq.size()>k){
+                    pq.remove();
+                }
+            }
+            
+            return pq.peek();
+        }
+    }
+
+
 
     // ------------------------------------------------------------
     // Main Method (Test Code)
