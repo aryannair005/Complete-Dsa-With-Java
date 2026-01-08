@@ -331,6 +331,83 @@ public class GreedyAlgorithm{
 
         return cost;
     }
+    // ============================================================
+// Q11. Capacity To Ship Packages Within D Days
+//
+// About:
+// Given an array where each element represents the weight of a package,
+// and an integer 'days', find the minimum ship capacity required to
+// ship all packages within the given number of days.
+//
+// Rules:
+// - Packages must be shipped in order
+// - Each day, total weight shipped cannot exceed ship capacity
+//
+// Approach:
+// - Use Binary Search on the answer (capacity)
+// - Minimum capacity = max weight in array
+// - Maximum capacity = sum of all weights
+// - For a given capacity, check if shipping is possible within 'days'
+//
+// Time Complexity: O(n log S)
+//   where:
+//   n = number of packages
+//   S = sum of all package weights
+//
+// Space Complexity: O(1)
+// ============================================================
+public static int shipWithDays(int[] weights,int days){
+        int allSum=0;
+        for(int i=0;i<weights.length;i++){
+            allSum+=weights[i];
+        }
+        int maxValue=0;
+        for(int i=0;i<weights.length;i++){
+            maxValue=Math.max(maxValue,weights[i]);
+        }
+
+        int low=maxValue;
+        int high=allSum;
+        int ans=-1;
+
+        while(low<=high){
+            int mid=low+(high-low)/2;
+            if(helper(mid,weights,days)){
+                ans=mid;
+                high=mid-1;
+            }else{
+                low=mid+1;
+            }
+        }
+        return ans;
+}
+
+    // ============================================================
+    // Helper Method
+    //
+    // About:
+    // Checks whether all packages can be shipped within the given
+    // number of days using 'mid' as ship capacity.
+    //
+    // Time Complexity: O(n)
+    // Space Complexity: O(1)
+    // ============================================================
+    public static boolean helper(int mid,int[] weights,int days){
+        int count=1;
+        int sum=weights[0];
+
+        for(int i=1;i<weights.length;i++){
+            sum+=weights[i];
+            if(sum>mid){
+                count++;
+                sum=weights[i];
+            }
+        }
+        if(count <= days){
+            return true;
+        }
+        return false;
+    }
 
     // ------------------------------------------------------------
     // Main Method (Test Code)
