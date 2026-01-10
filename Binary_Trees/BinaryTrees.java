@@ -15,6 +15,7 @@
 
 import java.util.Queue;
 import java.util.LinkedList;
+import java.util.HashMap;
 
 public class BinaryTreesBasics{
 
@@ -193,7 +194,167 @@ public class BinaryTreesBasics{
 
             return leftSum+rightSum+root.data;
         }
-    }
+
+        // ------------------------------------------------------------
+        // Q9. Diameter of Binary Tree (Naive Approach)
+        //
+        // About:
+        // Diameter = Longest path between any two nodes.
+        // Uses height calculation repeatedly.
+        //
+        // Time Complexity: O(n^2)
+        // ------------------------------------------------------------
+        public static int diameterOfTree(Node root){
+            if(root == null){
+                return 0;
+            }
+            int leftDiam=diameterOfTree(root.left);
+            int leftHt=height(root.left);
+            int rightDiam=diameterOfTree(root.right);
+            int rightHt=height(root.right);
+
+            int selfDiam=leftHt+rightHt+1;
+            return Math.max(selfDiam,Math.max(leftDiam,rightDiam));
+        }
+
+        // ------------------------------------------------------------
+        // Helper Class for Optimized Diameter
+        // ------------------------------------------------------------
+        static class Info{
+            int diam;
+            int h;
+
+            public Info(int diam,int h){
+                this.diam=diam;
+                this.h=h;
+            }
+        }
+
+        // ------------------------------------------------------------
+        // Q10. Diameter of Binary Tree (Optimized)
+        //
+        // About:
+        // Computes diameter and height in a single traversal.
+        //
+        // Time Complexity: O(n)
+        // ------------------------------------------------------------
+        public static Info diameter(Node root){
+            if(root == null){
+                return new Info(0,0);
+            }
+
+            Info leftInfo=diameter(root.left);
+            Info rightInfo=diameter(root.right);
+
+            int finalDiameter=Math.max(
+                Math.max(leftInfo.diam,rightInfo.diam),
+                leftInfo.h + rightInfo.h + 1
+            );
+
+            int FinalHeight=Math.max(leftInfo.h,rightInfo.h)+1;
+
+            return new Info(finalDiameter,FinalHeight);
+        }
+
+        // ------------------------------------------------------------
+        // Q11. Check if Two Trees are Identical
+        //
+        // Time Complexity: O(n)
+        // ------------------------------------------------------------
+        public static boolean isIdentical(Node node,Node subroot){
+            if(node == null && subroot == null){
+                return true;
+            }else if(node == null || subroot == null || node.data != subroot.data){
+                return false;
+            }
+            if(isIdentical(node.left,subroot.left) != true){
+                return false;
+            }
+            if(isIdentical(node.right,subroot.right) != true){
+                return false;
+            }
+            return true;
+        }
+
+        // ------------------------------------------------------------
+        // Q12. Check if a Tree is Subtree of Another
+        //
+        // Time Complexity: O(n * m)
+        // ------------------------------------------------------------
+        public static boolean isSubtree(Node root,Node subroot){
+            if(root == null ){
+                return false;
+            }
+
+            if(root.data == subroot.data){
+                if(isIdentical(root,subroot)){
+                    return true;
+                }
+            }
+
+            return isSubtree(root.left,subroot) || isSubtree(root.right,subroot);
+        }
+
+        // ------------------------------------------------------------
+        // Helper Class for Top View
+        // ------------------------------------------------------------
+        public static class Info2{
+            Node node;
+            int hd;
+
+            public Info2(Node node,int hd){
+                this.node=node;
+                this.hd=hd;
+            }
+        }
+
+        // ------------------------------------------------------------
+        // Q13. Top View of Binary Tree
+        //
+        // About:
+        // Prints nodes visible from the top using
+        // horizontal distance and level order traversal.
+        //
+        // Time Complexity: O(n)
+        // Space Complexity: O(n)
+        // ------------------------------------------------------------
+        public static void topView(Node root){
+            Queue<Info2> q=new LinkedList<>();
+            HashMap<Integer,Node> map=new HashMap<>();
+
+            q.add(new Info2(root,0));
+            q.add(null);
+
+            int min=0,max=0;
+
+            while(q.isEmpty() != true){
+                Info2 curr=q.remove();
+                if(curr == null){
+                    if(q.isEmpty()){
+                        break;
+                    }else{
+                        q.add(null);
+                    }
+                }else{
+                    if(!map.containsKey(curr.hd)){
+                        map.put(curr.hd,curr.node);
+                    }
+                    if(curr.node.left != null){
+                        q.add(new Info2(curr.node.left,curr.hd-1));
+                        min=Math.min(curr.hd-1,min);
+                    }
+                    if(curr.node.right != null){
+                        q.add(new Info2(curr.node.right,curr.hd+1));
+                        max=Math.max(max,curr.hd+1);
+                    }
+                }
+            }
+            for(int i=min;i<=max;i++){
+                System.out.print(map.get(i).data+" ");
+            }
+            System.out.println();
+        }
+    }   
 
     // ------------------------------------------------------------
     // Main Method (Test Code)
@@ -203,6 +364,6 @@ public class BinaryTreesBasics{
         BinaryTree tree=new BinaryTree(); 
         Node root=tree.buildTree(nodes);
 
-        System.out.println(tree.sum(root));
+        tree.topView(root);
     }
 }
