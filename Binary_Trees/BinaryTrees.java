@@ -509,7 +509,7 @@ public class BinaryTreesBasics{
 
             return distance1+distance2;
         }
-
+        
         // ------------------------------------------------------------
         // Q20. Kth Ancestor of a Node
         //
@@ -518,24 +518,26 @@ public class BinaryTreesBasics{
         //
         // Time Complexity: O(n)
         // ------------------------------------------------------------
-        public static int kthAncestor(Node root,int n,int k){
+        public static int ans=-1;
+        public static int kthAncestor2(Node root,int n,int k){
             if(root == null){
                 return -1;
             }
             if(root.data == n){
                 return 0;
             }
-            int leftDistance=kthAncestor(root.left,n,k);
-            int rightDistance=kthAncestor(root.right,n,k);
+            int leftD=kthAncestor2(root.left,n,k);
+            int rightD=kthAncestor2(root.right,n,k);
 
-            int maxDistance=Math.max(leftDistance,rightDistance);
-            if(maxDistance != -1){
-                if(maxDistance+1 == k){
-                    System.out.println("root : "+ root.data);
-                }
-                return maxDistance+1;
+            if(leftD == -1 && rightD == -1){
+                return -1;
             }
-            return -1;
+
+            int distance=Math.max(leftD,rightD)+1;
+            if(distance == k){
+                ans=root.data;
+            }
+            return distance;
         }
 
         // ------------------------------------------------------------
