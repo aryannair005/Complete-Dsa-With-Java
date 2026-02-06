@@ -18,6 +18,7 @@
  * Language: Java
  * Author: Aryan Nair
  */
+import java.util.ArrayList;
 
 public class TriesBasics {
 
@@ -148,18 +149,93 @@ public class TriesBasics {
         }
         return false;
     }
+    // ------------------------------------------------------------
+    // Q5. Count Total Nodes in Trie
+    //
+    // About:
+    // Counts total number of nodes present in the Trie.
+    // Each node represents a unique prefix.
+    //
+    // Time Complexity: O(N)
+    // (N = total number of nodes in Trie)
+    // ------------------------------------------------------------
+    public static int countNodes(Node root){
+        if(root == null){
+            return 0;
+        }
+
+        int count=0;
+        for(int i=0;i<26;i++){
+            if(root.children[i] != null){
+                count+=countNodes(root.children[i]);
+            }
+        }
+        return count+1;
+    }
+
+    // ------------------------------------------------------------
+    // Q6. Count Unique Substrings of a String
+    //
+    // About:
+    // Inserts all suffixes of the string into the Trie.
+    // Number of unique substrings =
+    // Total number of Trie nodes.
+    //
+    // Time Complexity: O(N^2)
+    // Space Complexity: O(N^2)
+    // ------------------------------------------------------------
+    public static int uniqueSubString(String str){
+
+        for(int i=0;i<str.length();i++){
+            insert(str.substring(i));
+        }
+
+        return countNodes(root);
+    }
+
+    // ------------------------------------------------------------
+    // Q7. Longest Word with All Prefixes Present
+    //
+    // About:
+    // Finds the longest word such that all its prefixes
+    // are present in the Trie.
+    //
+    // If multiple answers exist, lexicographically
+    // smallest word is chosen.
+    //
+    // Time Complexity: O(N * 26)
+    // ------------------------------------------------------------
+    public static String ans="";
+    public static void longestWord(Node root,StringBuilder temp){
+        if(root == null){
+            return;
+        }
+
+        for(int i=0;i<26;i++){
+            if(root.children[i] != null && root.children[i].endOfWord == true){
+                char ch=(char) (i+'a');
+                temp.append(ch);
+
+                if(temp.length() > ans.length()){
+                    ans=temp.toString();
+                }
+
+                longestWord(root.children[i],temp);
+                temp.deleteCharAt(temp.length()-1);
+            }
+        }
+    }
+
 
     // ------------------------------------------------------------
     // Main Method (Test Code)
     // ------------------------------------------------------------
     public static void main(String[] args) {
-        String[] words = {"i", "like", "sam", "samsung", "mobile", "ice"};
-
-        for (int i = 0; i < words.length; i++) {
-            insert(words[i]);
+        String[] str={"a","banana","app","appl","ap","apply","apple"};
+        for(int i=0;i<str.length;i++){
+            insert(str[i]);
         }
-
-        String key = "ilikesamsung";
-        System.out.println(workBreak(key));
+        longestWord(root,new StringBuilder());
+        System.out.println(ans);
     }
 }
