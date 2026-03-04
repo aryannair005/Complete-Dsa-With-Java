@@ -23,7 +23,7 @@ import java.util.ArrayDeque;
  * Author: Aryan Nair
  */
 
-public class GraphBasics{
+public class Graph1{
 
     // ============================================================
     // Edge Structure
@@ -44,8 +44,8 @@ public class GraphBasics{
     // Q1. Create Graph using Adjacency List
     //
     // About:
-    // Creates an undirected graph using adjacency list.
-    // Each index represents a vertex and stores its edges.
+    // Builds a graph using adjacency list representation.
+    // Each vertex stores a list of its outgoing edges.
     //
     // Time Complexity: O(V + E)
     // ------------------------------------------------------------
@@ -54,42 +54,26 @@ public class GraphBasics{
             graph[i]=new ArrayList<>();
         }
 
-        // Vertex 0 
-        graph[0].add(new Edge(0,1,1));
-        graph[0].add(new Edge(0,2,1));
+        graph[0].add(new Edge(0,1,2));
+        graph[0].add(new Edge(0,2,4));
 
-        // Vertex 1
-        graph[1].add(new Edge(1,0,1));
-        graph[1].add(new Edge(1,3,1));
+        graph[1].add(new Edge(1,2,1));
+        graph[1].add(new Edge(1,3,7));
 
-        // Vertex 2
-        graph[2].add(new Edge(2,0,1));
-        graph[2].add(new Edge(2,4,1));
+        graph[2].add(new Edge(2,4,3));
 
-        // Vertex 3
-        graph[3].add(new Edge(3,1,1));
-        graph[3].add(new Edge(3,4,1));
         graph[3].add(new Edge(3,5,1));
 
-        // Vertex 4
-        graph[4].add(new Edge(4,2,1));
-        graph[4].add(new Edge(4,3,1));
-        graph[4].add(new Edge(4,5,1));
-
-        // Vertex 5
-        graph[5].add(new Edge(5,3,1));
-        graph[5].add(new Edge(5,4,1));
-        graph[5].add(new Edge(5,6,1));
-
-        // Vertex 6
-        graph[6].add(new Edge(6,5,1)); 
+        graph[4].add(new Edge(4,3,2));
+        graph[4].add(new Edge(4,5,5));
     }
 
     // ------------------------------------------------------------
     // Q2. Breadth First Search (BFS)
     //
     // About:
-    // Traverses the graph level by level using Queue.
+    // Traverses the graph level by level using a Queue.
+    // Visits all neighbours before moving to the next level.
     //
     // Time Complexity: O(V + E)
     // Space Complexity: O(V)
@@ -120,6 +104,7 @@ public class GraphBasics{
     //
     // About:
     // Traverses the graph depth-wise using recursion.
+    // Goes as deep as possible before backtracking.
     //
     // Time Complexity: O(V + E)
     // Space Complexity: O(V) (recursion stack)
@@ -141,7 +126,7 @@ public class GraphBasics{
     //
     // About:
     // Uses DFS to check whether a path exists
-    // between source and destination vertices.
+    // between a source and destination vertex.
     //
     // Time Complexity: O(V + E)
     // Space Complexity: O(V)
@@ -166,12 +151,21 @@ public class GraphBasics{
     // Main Method (Test Code)
     // ------------------------------------------------------------
     public static void main(String[] args){
-        int V=7;
-        @SuppressWarnings("unchecked")
+        int V=6;
         ArrayList<Edge>[] graph=new ArrayList[V];
-
+    
         createGraph(graph);
 
-        System.out.println(hasPath(graph,0,6,new boolean[V]));
+        System.out.print("BFS : ");
+        bfs(graph);
+
+        System.out.println();
+
+        boolean[] vis=new boolean[V];
+        System.out.print("DFS : ");
+        dfs(graph,0,vis);
+
+        System.out.println();
+        System.out.println("Path 0 → 5 : "+hasPath(graph,0,5,new boolean[V]));
     }
 }
