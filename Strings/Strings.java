@@ -72,8 +72,46 @@ public class Strings {
         return (int) Math.sqrt((x * x) + (y * y));
     }
 
+
     // ------------------------------------------------------------
-    // Q3. Write a program to perform string compression
+    // Q3. Write a program to convert the first character of every
+    // word to uppercase
+    //
+    // Example:
+    // "hello world" -> "Hello World"
+    // "java is easy" -> "Java Is Easy"
+    //
+    // Pattern:
+    // String Traversal + State/Boundary Detection
+    //
+    // Key Observation:
+    // A character should be converted when:
+    // - It is the first character of the string, OR
+    // - The previous character is a space
+    //
+    // Time Complexity: O(n)
+    // Space Complexity: O(n)
+    // ------------------------------------------------------------
+    public static String toUpperCaseString(String str) {
+        StringBuilder sb = new StringBuilder("");
+
+        sb.append(Character.toUpperCase(str.charAt(0)));
+
+        for (int i = 1; i < str.length(); i++) {
+            if (str.charAt(i) == ' ' && i < str.length() - 1) {
+                sb.append(str.charAt(i));
+                i++;
+                sb.append(Character.toUpperCase(str.charAt(i)));
+            } else {
+                sb.append(str.charAt(i));
+            }
+        }
+
+        return sb.toString();
+    }
+
+    // ------------------------------------------------------------
+    // Q4. Write a program to perform string compression
     // by counting consecutive repeated characters
     //
     // Example:
@@ -115,7 +153,7 @@ public class Strings {
     }
 
     // ------------------------------------------------------------
-    // Q4. Write a program to check whether two strings are anagrams
+    // Q5. Write a program to check whether two strings are anagrams
     // using character frequency counting
     //
     // Example:

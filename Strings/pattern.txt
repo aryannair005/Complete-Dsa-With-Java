@@ -1,0 +1,90 @@
+Problem: Palindrome String
+
+Pattern:
+Two Pointers
+
+Trigger:
+Need to compare elements from opposite ends of a sequence.
+
+Key observation:
+Place one pointer at the beginning and one at the end.
+Compare both characters and move both pointers toward the center.
+
+Mental trigger:
+"Compare opposite ends → Two Pointers"
+
+Time: O(n)
+Space: O(1)
+
+
+
+
+Problem: Shortest Distance from Origin
+
+Pattern:
+Simulation / Coordinate Tracking
+
+Trigger:
+The problem gives a sequence of movements, directions,
+or operations and asks for the final state/result.
+
+Key observation:
+Maintain the current coordinates while scanning the string:
+W → x--
+E → x++
+N → y++
+S → y--
+
+After processing all movements, calculate the distance
+from the origin.
+
+Mental trigger:
+"Sequence of moves → Track the state"
+
+Time: O(n)
+Space: O(1)
+
+
+
+Problem: Convert First Character of Every Word to Uppercase
+
+Pattern:
+String Traversal + State/Boundary Detection
+
+Trigger:
+Need to process a string differently when you reach the
+beginning of a word or a specific delimiter.
+
+Key observation:
+A character should be converted when:
+- It is the first character of the string, OR
+- The previous character is a space.
+
+Mental trigger:
+"Start of a word → process differently"
+
+Time: O(n)
+Space: O(n)
+
+
+
+Problem: String Compression
+
+Pattern:
+Run-Length Encoding (RLE) / Consecutive Grouping
+
+Trigger:
+Need to process consecutive identical characters/elements
+as one group and count their frequency.
+
+Key observation:
+Use one pointer to scan the string.
+When consecutive characters are equal, keep moving forward
+and count the size of that group.
+Then append the character and its count.
+
+Mental trigger:
+"Consecutive duplicates → Group + Count"
+
+Time: O(n)
+Space: O(n)
