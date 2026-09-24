@@ -1,0 +1,60 @@
+Problem: Maximum Subarray
+
+Pattern:
+Kadane's Algorithm
+
+Trigger:
+Contiguous subarray + maximize sum.
+
+Key observation:
+At every index, decide whether to extend the current subarray
+or start a new one.
+
+Mental trigger:
+"Contiguous + maximum sum → Kadane"
+
+Time: O(n)
+Space: O(1)
+
+
+
+
+Problem: Trapping Rain Water
+
+Pattern:
+Prefix/Suffix Maximum
+
+Trigger:
+The answer at each index depends on the maximum values
+on both the left and right.
+
+Key observation:
+Water level is limited by the smaller of the left and right
+maximum boundaries.
+
+Mental trigger:
+"Need left + right information → Prefix/Suffix"
+
+Time: O(n)
+Space: O(n)
+
+
+
+
+Problem: Best Time to Buy and Sell Stock
+
+Pattern:
+Running Minimum + Greedy
+
+Trigger:
+Current value needs to be compared with the
+best/cheapest previous value.
+
+Key observation:
+Maintain the minimum price seen so far.
+
+Mental trigger:
+"Best previous value + current value"
+
+Time: O(n)
+Space: O(1)
