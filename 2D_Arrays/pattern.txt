@@ -1,0 +1,72 @@
+Problem: Spiral Matrix
+
+Pattern:
+Boundary Traversal / Matrix Simulation
+
+Trigger:
+Need to traverse a matrix in a specific order while
+moving around its outer boundaries.
+
+Key observation:
+Maintain four boundaries:
+startingRow, endingRow, startingCol, endingCol.
+
+After completing one outer layer, shrink all four boundaries
+and process the next inner layer.
+
+Mental trigger:
+"Matrix + spiral/layer traversal → Four Boundaries"
+
+Time: O(m × n)
+Space: O(1) auxiliary space
+
+
+
+
+Problem: Matrix Diagonal Sum
+
+Pattern:
+Matrix Index Mapping / Direct Traversal
+
+Trigger:
+The problem asks for elements on a specific diagonal
+or follows a predictable index relationship.
+
+Key observation:
+Primary diagonal → mat[i][i]
+Secondary diagonal → mat[i][n - 1 - i]
+
+If both diagonals meet at the center, count that element only once.
+
+Mental trigger:
+"Diagonal → (i,i) and (i,n-1-i)"
+
+Time: O(n)
+Space: O(1)
+
+
+
+
+Problem: Search in a Row-wise and Column-wise Sorted Matrix
+
+Pattern:
+Staircase Search / Two-Directional Elimination
+
+Trigger:
+Matrix is sorted left → right in every row and
+top → bottom in every column.
+
+Key observation:
+Start at the top-right corner.
+From there:
+- If current > target → move left.
+- If current < target → move down.
+- If current == target → found.
+
+Each move eliminates an entire row or column from consideration.
+
+Mental trigger:
+"Sorted rows + sorted columns → Start top-right and eliminate"
+
+Time: O(m + n)
+Space: O(1)
