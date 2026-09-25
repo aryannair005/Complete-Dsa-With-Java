@@ -74,3 +74,179 @@ Mental trigger:
 
 Time: O(1)
 Space: O(1)
+
+
+Problem: Clear the i-th Bit
+
+Pattern:
+Bit Manipulation / Bitmask
+
+Trigger:
+Need to make a specific bit equal to 0.
+
+Key observation:
+Create a mask where every bit is 1 except the i-th bit:
+~(1 << i)
+
+Then use AND:
+num & ~(1 << i)
+
+Mental trigger:
+"Clear bit → NOT mask → AND"
+
+Time: O(1)
+Space: O(1)
+
+
+
+
+
+
+Problem: Update the i-th Bit
+
+Pattern:
+Bit Manipulation / Clear + Set
+
+Trigger:
+Need to change a specific bit to either 0 or 1.
+
+Key observation:
+First clear the i-th bit, then set it only if the
+new value is 1.
+
+Mental trigger:
+"Update bit → Clear first → Put new bit"
+
+Time: O(1)
+Space: O(1)
+
+
+
+
+
+Approach 1:
+update == 0 → clear
+update == 1 → set
+
+Approach 2:
+clear → OR with (update << i)
+
+
+
+
+
+Problem: Clear Last i Bits
+
+Pattern:
+Bit Manipulation / Bitmask
+
+Trigger:
+Need to make the last i bits equal to 0.
+
+Key observation:
+Create:
+(~0) << i
+
+This gives:
+11111111...000...000
+             ↑
+          i zeros
+
+Then AND with num.
+
+Mental trigger:
+"Clear last i bits → (~0) << i"
+
+Time: O(1)
+Space: O(1)
+
+
+
+
+Problem: Clear Bits from i to j
+
+Pattern:
+Bit Manipulation / Range Masking
+
+Trigger:
+Need to clear a continuous range of bits.
+
+Key observation:
+Create two masks:
+Left mask  → keeps bits after j
+Right mask → keeps bits before i
+
+Combine them using OR, then AND with num.
+
+Mental trigger:
+"Clear range → Keep left + keep right → AND"
+
+Time: O(1)
+Space: O(1)
+
+
+
+
+
+Problem: Check if a Number is a Power of 2
+
+Pattern:
+Bit Manipulation / Binary Property
+
+Trigger:
+Need to determine whether a number has exactly one set bit.
+
+Key observation:
+A positive power of 2 has exactly one 1-bit.
+
+For such a number:
+num & (num - 1) == 0
+
+Mental trigger:
+"Power of 2 → Exactly one set bit → n & (n-1)"
+
+Time: O(1)
+Space: O(1)
+
+
+
+
+
+Problem: Count Set Bits
+
+Pattern:
+Bit Manipulation / Bit Counting
+
+Trigger:
+Need to count how many 1s are present in the binary representation.
+
+Key observation:
+Check each bit and count whenever it is 1.
+
+Mental trigger:
+"Count 1s in binary → Count set bits"
+
+Time: O(log n)
+Space: O(1)
+
+
+
+Problem: Fast Exponentiation / Binary Exponentiation
+
+Pattern:
+Binary Exponentiation
+
+Trigger:
+Need to calculate a^n efficiently when n can be large.
+
+Key observation:
+Represent the exponent n in binary.
+For every set bit in n, multiply the current answer by a.
+
+Square the base after every bit and shift n right.
+
+Mental trigger:
+"Large exponent → Binary exponentiation → Check bits of n"
+
+Time: O(log n)
+Space: O(1)
