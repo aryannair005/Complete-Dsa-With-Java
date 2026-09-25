@@ -1,0 +1,26 @@
+Problem: Check if a Number is Odd or Even
+
+Pattern:
+Bit Manipulation / Bitmask
+
+Trigger:
+The problem asks about a property that can be determined
+from a specific bit of a number.
+
+Key observation:
+The least significant bit (LSB) determines odd/even:
+LSB = 0 → even
+LSB = 1 → odd
+
+Use:
+num & 1
+
+Mental trigger:
+"Odd/Even → Check the last bit"
+
+Time: O(1)
+Space: O(1)
+
+
+
+
