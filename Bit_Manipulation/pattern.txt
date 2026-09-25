@@ -48,3 +48,29 @@ Mental trigger:
 
 Time: O(1)
 Space: O(1)
+
+
+
+
+Problem: Set the i-th Bit
+
+Pattern:
+Bit Manipulation / Bitmask
+
+Trigger:
+Need to make a specific bit equal to 1.
+
+Key observation:
+Create a mask with only the i-th bit set:
+1 << i
+
+Then use OR:
+num | (1 << i)
+
+OR with 1 always makes that bit 1, while all other bits remain unchanged.
+
+Mental trigger:
+"Set bit → Create mask → OR"
+
+Time: O(1)
+Space: O(1)
