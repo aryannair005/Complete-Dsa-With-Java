@@ -24,3 +24,27 @@ Space: O(1)
 
 
 
+Problem: Get the i-th Bit of a Number
+
+Pattern:
+Bit Manipulation / Bitmask
+
+Trigger:
+Need to inspect, set, clear, or modify a specific bit
+at position i.
+
+Key observation:
+Create a mask with only the i-th bit set:
+1 << i
+
+Then use AND:
+num & (1 << i)
+
+If the result is 0 → i-th bit is 0.
+Otherwise → i-th bit is 1.
+
+Mental trigger:
+"Specific bit → Create mask with 1 << i → use &"
+
+Time: O(1)
+Space: O(1)
